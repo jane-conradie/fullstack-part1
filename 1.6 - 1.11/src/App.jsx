@@ -24,13 +24,21 @@ const Statistics = ({ good, neutral, bad }) => {
       <h1>
         <b>statistics</b>
       </h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      <p>all {getSum()}</p>
-      <p>average {getAverage()}</p>
-      <p>positive {getPositive()} % </p>
+      <StatisticLine text="good" value={good} />
+      <StatisticLine text="neutral" value={neutral} />
+      <StatisticLine text="bad" value={bad} />
+      <StatisticLine text="all" value={getSum()} />
+      <StatisticLine text="average" value={getAverage()} />
+      <StatisticLine text="positive" value={getPositive()} symbol="%" />
     </div>
+  );
+};
+
+const StatisticLine = ({ text, value, symbol }) => {
+  return (
+    <p>
+      {text} {value} {symbol}
+    </p>
   );
 };
 
