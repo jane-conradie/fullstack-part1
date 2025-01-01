@@ -14,10 +14,27 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
 
+  const [votes, setVotes] = useState(new Uint8Array(8));
+
+  const addVote = () => {
+    // make copy of array
+    const copy = { ...votes };
+
+    copy[selected] += 1;
+
+    setVotes(copy);
+  };
+
   return (
     <>
+      <h1>
+        <b>Anecdote of the day</b>
+      </h1>
       {anecdotes[selected]}
+      <br />
+      has {votes[selected]} votes
       <div>
+        <button onClick={() => addVote()}>vote</button>
         <button
           onClick={() =>
             setSelected(Math.floor(Math.random() * (anecdotes.length - 1)))
