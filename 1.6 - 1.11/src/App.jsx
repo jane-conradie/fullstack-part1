@@ -10,7 +10,7 @@ const Statistics = ({ good, neutral, bad }) => {
   };
 
   const getAverage = () => {
-    return (good - bad) / getSum();
+    return (good * 1 + bad * -1 + neutral * 0) / getSum();
   };
 
   const getPositive = () => {
@@ -24,21 +24,49 @@ const Statistics = ({ good, neutral, bad }) => {
       <h1>
         <b>statistics</b>
       </h1>
-      <StatisticLine text="good" value={good} />
-      <StatisticLine text="neutral" value={neutral} />
-      <StatisticLine text="bad" value={bad} />
-      <StatisticLine text="all" value={getSum()} />
-      <StatisticLine text="average" value={getAverage()} />
-      <StatisticLine text="positive" value={getPositive()} symbol="%" />
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <StatisticLine text="good" value={good} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="neutral" value={neutral} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="bad" value={bad} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="all" value={getSum()} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="average" value={getAverage()} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticLine text="positive" value={getPositive()} symbol="%" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
 
 const StatisticLine = ({ text, value, symbol }) => {
   return (
-    <p>
+    <div>
       {text} {value} {symbol}
-    </p>
+    </div>
   );
 };
 
