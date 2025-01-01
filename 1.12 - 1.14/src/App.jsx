@@ -18,12 +18,15 @@ const App = () => {
 
   const addVote = () => {
     // make copy of array
-    const copy = { ...votes };
+    const copy = [...votes];
 
     copy[selected] += 1;
 
     setVotes(copy);
   };
+
+  // getting total of highest votes
+  const highestVote = Math.max(...votes);
 
   return (
     <>
@@ -42,6 +45,14 @@ const App = () => {
         >
           next anecdote
         </button>
+      </div>
+      <div>
+        <h1>
+          <b>Anecdote with most votes</b>
+        </h1>
+        {anecdotes[votes.indexOf(highestVote)]}
+        <br />
+        has {highestVote} votes
       </div>
     </>
   );
