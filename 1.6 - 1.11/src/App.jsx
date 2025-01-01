@@ -4,10 +4,10 @@ const Button = ({ handleClick, text }) => {
   return <button onClick={handleClick}>{text}</button>;
 };
 
-const Statistic = ({ text, total }) => {
+const Statistic = ({ text, total, symbol }) => {
   return (
     <p>
-      {text} {total}
+      {text} {total} {symbol}
     </p>
   );
 };
@@ -29,6 +29,18 @@ const App = () => {
     setBad(bad + 1);
   };
 
+  const getSum = () => {
+    return good + bad + neutral;
+  };
+
+  const getAverage = () => {
+    return (good - bad) / getSum();
+  };
+
+  const getPositive = () => {
+    return (good / getSum()) * 100;
+  };
+
   return (
     <>
       <h1>
@@ -43,6 +55,9 @@ const App = () => {
       <Statistic text="good" total={good} />
       <Statistic text="neutral" total={neutral} />
       <Statistic text="bad" total={bad} />
+      <Statistic text="all" total={getSum()} />
+      <Statistic text="average" total={getAverage()} />
+      <Statistic text="positive" total={getPositive()} symbol={"%"} />
     </>
   );
 };
